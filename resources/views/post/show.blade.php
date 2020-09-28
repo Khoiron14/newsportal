@@ -4,9 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <div class="mb-3">{{ $post->user->name }} at {{ $post->created_at->format('d M Y H:i') }}</div>
             <div class="card mb-3">
                 <div class="card-header">
-                    @if (auth()->user()->isAuthor($post))
+                    @if (auth()->user()!=null && auth()->user()->isAuthor($post))
                     <form action="{{ route('posts.destroy', $post)}}" method="post">
                         {{ csrf_field() }}
                         @method('DELETE')
