@@ -16,6 +16,9 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/user/posts', 'UserController@posts')->name('user.posts');
+Route::get('/users/posts', 'UserController@posts')->name('user.posts');
 
-Route::resource('posts', 'PostController');
+Route::resource('/posts', 'PostController');
+
+Route::post('/posts/{post}/comments', "CommentController@store")->name('comment.store');
+Route::delete('/posts/{post}/comments/{comment}', "CommentController@destroy")->name('comment.destroy');

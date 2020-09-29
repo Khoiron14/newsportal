@@ -21,6 +21,46 @@
                     <p>{{ $post->content }}</p>
                 </div>
             </div>
+
+            <div class="card mb-3">
+                <div class="card-header">
+                    <h5>Write Comment</h5>
+                </div>
+                <div class="card-body">
+                    <form role="form" method="POST" class="text-dark" action="{{ route('comment.store', $post) }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <textarea
+                                class="form-control{{ $errors->has('text') ? ' is-invalid' : '' }}"
+                                name="text"
+                                rows="3"
+                                required></textarea>
+                            @if ($errors->has('text'))
+                            <div class="invalid-feedback">
+                                <strong>{{ $errors->first('text') }}</strong>
+                            </div>
+                            @endif
+                        </div>
+                        <button type="submit" class="btn btn-primary">Comment</button>
+                    </form>
+                </div>
+            </div>
+
+            @foreach($post->comments->reverse() as $comment)
+                <div class="card mb-3">
+                    <div class="card-body">
+                        @if (auth()->user()!=null && auth()->user()->isCommenter($comment))
+                        <form action="{{ route('comment.destroy', [$post, $comment])}}" method="post">
+                            {{ csrf_field() }}
+                            @method('DELETE')
+                            <button class="btn btn-danger float-right" type="submit">Delete</button>
+                        </form>
+                        @endif
+                        <b>{{ $comment->user->name }}</b>
+                        <p>{{ $comment->text }}</p>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 </div>

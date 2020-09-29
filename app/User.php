@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use App\Post;
+use App\Comment;
 
 class User extends Authenticatable
 {
@@ -44,8 +45,18 @@ class User extends Authenticatable
         return $this->posts->find($post->id) != null;
     }
 
+    public function isCommenter(Comment $comment)
+    {
+        return $this->comments->find($comment->id) != null;
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
