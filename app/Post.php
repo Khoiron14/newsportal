@@ -10,7 +10,7 @@ use App\Image;
 
 class Post extends Model
 {
-    const LIMIT = 25;
+    const LIMIT = 100;
 
     protected $guarded = [];
 
