@@ -18,6 +18,10 @@
                     <h5>{{ $post->title }}</h5>
                 </div>
                 <div class="card-body">
+                    @if ($post->image != null)
+                    <img src="{{ URL::to('/') }}/images/{{ $post->image->url }}" class="mb-3" width="100%" alt="{{ $post->slug }}">
+                    @endif
+
                     <p>{{ $post->content }}</p>
                 </div>
             </div>

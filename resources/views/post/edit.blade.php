@@ -8,7 +8,7 @@
                 <div class="card-header">Write Post</div>
 
                 <div class="card-body">
-                    <form role="form" method="POST" class="text-dark" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
+                    <form role="form" method="POST" enctype="multipart/form-data" class="text-dark" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
                         <div class="form-group">
@@ -25,6 +25,23 @@
                                 <div class="invalid-feedback">
                                     <strong>{{ $errors->first('title') }}</strong>
                                 </div>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label>Image :</label>
+                            <input
+                                type="file"
+                                class="form-control-file"
+                                name="image"
+                                required
+                            >
+                            @if ($errors->has('image'))
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <strong class="text-danger"><li>{{ $error }}</li></strong>
+                                    @endforeach
+                                </ul>
                             @endif
                         </div>
 

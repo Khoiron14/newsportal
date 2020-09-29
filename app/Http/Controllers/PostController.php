@@ -29,12 +29,21 @@ class PostController extends Controller
             return redirect()->back();
         }
 
-        auth()->user()->posts()->create([
+        $post = auth()->user()->posts()->create([
             'user_id' => auth()->user()->id,
             'title' => $request->title,
             'slug' => str_slug($request->title),
             'content' => $request->content
         ]);
+
+        if ($request->hasFile('image')) {
+            $resource = $request->file('image');
+            $name = $resource->getClientOriginalName();
+            $resource->move(\base_path() ."/public/images", $name);
+            $post->image()->create([
+                'url' => $name
+            ]);
+        }
 
         $posts = Post::all();
 
@@ -82,6 +91,15 @@ class PostController extends Controller
             'slug' => str_slug($request->title),
             'content' => $request->content
         ]);
+
+        if ($request->hasFile('image')) {
+            $resource = $request->file('image');
+            $name = $resource->getClientOriginalName();
+            $resource->move(\base_path() ."/public/images", $name);
+            $post->image()->create([
+                'url' => $name
+            ]);
+        }
 
         return redirect()->route('posts.show', compact('post'));
     }
