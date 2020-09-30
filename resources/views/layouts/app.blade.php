@@ -55,7 +55,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @hasrole('admin')
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('admin.index') }}">
                                             Manage User
                                         </a>
                                     @endhasrole
@@ -64,7 +64,12 @@
                                         <a class="dropdown-item" href="{{ route('user.posts') }}">
                                             Manage Post
                                         </a>
+                                    @else
+                                        <a class="dropdown-item" href="{{ route('user.request-writer.show') }}">
+                                            Become a Writer
+                                        </a>
                                     @endhasrole
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

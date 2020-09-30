@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -21,5 +22,17 @@ class UserController extends Controller
         $posts = auth()->user()->posts->reverse();
 
         return view('user.post', compact('posts'));
+    }
+
+    public function showRequestWriter()
+    {
+        return view('user.request-writer');
+    }
+
+    public function storeRequestWriter(User $user)
+    {
+        $user->requestWriter()->create();
+
+        return redirect()->back();
     }
 }
