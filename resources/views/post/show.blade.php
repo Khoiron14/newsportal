@@ -8,7 +8,7 @@
             <div class="card mb-3">
                 <div class="card-header">
                     @if (auth()->user()!=null && auth()->user()->isAuthor($post))
-                    <form action="{{ route('posts.destroy', $post)}}" method="post">
+                    <form action="{{ route('posts.destroy', $post)}}" method="post" onsubmit="return confirm('Are you sure?')">
                         {{ csrf_field() }}
                         @method('DELETE')
                         <button class="btn btn-danger float-right" type="submit">Delete</button>
@@ -54,7 +54,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         @if (auth()->user()!=null && auth()->user()->isCommenter($comment))
-                        <form action="{{ route('comment.destroy', [$post, $comment])}}" method="post">
+                        <form action="{{ route('comment.destroy', [$post, $comment])}}" method="post" onsubmit="return confirm('Are you sure?')">
                             {{ csrf_field() }}
                             @method('DELETE')
                             <button class="btn btn-danger float-right" type="submit">Delete</button>
