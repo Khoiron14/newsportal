@@ -60,7 +60,7 @@
                             <button class="btn btn-danger float-right" type="submit">Delete</button>
                         </form>
                         @endif
-                        <b>{{ $comment->user->name }}</b>
+                        <b>{{ $comment->user->name }}</b> - {{ $comment->created_at->diffForHumans() }}
                         <p>{{ $comment->text }}</p>
                     </div>
                 </div>
