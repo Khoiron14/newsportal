@@ -112,6 +112,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $post->image()->delete();
         $post->delete();
 
         return redirect()->route('user.posts');
