@@ -64,7 +64,7 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     @hasrole('admin')
                                         <a class="dropdown-item" href="{{ route('admin.index') }}">
-                                            Manage User
+                                            Manage User & Video
                                         </a>
                                     @endhasrole
 

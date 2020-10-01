@@ -38,8 +38,41 @@
                             @endforeach
                         </tbody>
                     </table>
-                    </div>
                 </div>
+            </div>
+
+            <div class="card mb-3">
+                    <div class="card-header">
+                        <h3>Manage</h3>
+                        <a href="{{ route('videos.create') }}" class="btn btn-sm btn-primary float-right" type="button">Add</a>
+                    </div>
+                    <div class="card-body">
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Video URL</th>
+                                <th scope="col">Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($videos as $video)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $video->url }}</td>
+                                    <td>
+                                        <form action="{{ route('videos.destroy', $video)}}" method="post" onsubmit="return confirm('Are you sure?')">
+                                            {{ csrf_field() }}
+                                            @method('DELETE')
+                                            <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>

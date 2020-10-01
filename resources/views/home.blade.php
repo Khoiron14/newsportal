@@ -18,6 +18,10 @@
                 </div>
             @endforeach
             {{ $posts->links() }}
+
+            @foreach($videos as $video)
+                <center><iframe width="450" height="300" src="{{ $video->url }}" allowfullscreen></iframe></center>
+            @endforeach
         </div>
     </div>
 </div>

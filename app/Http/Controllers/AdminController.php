@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\RequestWriter;
 use App\User;
+use App\Video;
 
 class AdminController extends Controller
 {
@@ -22,8 +23,9 @@ class AdminController extends Controller
     public function index()
     {
         $requests = RequestWriter::all();
+        $videos = Video::all();
 
-        return view('admin.index', compact('requests'));
+        return view('admin.index', compact('requests', 'videos'));
     }
 
     public function acceptWriter(User $user)

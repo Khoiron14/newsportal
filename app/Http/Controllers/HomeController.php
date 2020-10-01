@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Video;
 
 class HomeController extends Controller
 {
@@ -25,8 +26,9 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::latest()->paginate(5);
+        $videos = Video::all();
 
-        return view('home', compact('posts'));
+        return view('home', compact('posts', 'videos'));
     }
 
     public function search(Request $request)

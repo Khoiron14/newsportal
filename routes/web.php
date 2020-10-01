@@ -21,6 +21,10 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::delete('/admin/request-writer/{user}/accept', 'AdminController@acceptWriter')->name('admin.writer.accept');
 Route::delete('/admin/request-writer/{user}/decline', 'AdminController@declineWriter')->name('admin.writer.decline');
 
+Route::get('/videos', 'VideoController@create')->name('videos.create');
+Route::post('/videos', 'VideoController@store')->name('videos.store');
+Route::delete('/videos/{video}', 'VideoController@destroy')->name('videos.destroy');
+
 Route::get('/users/posts', 'UserController@posts')->name('user.posts');
 Route::get('/users/request-writer', 'UserController@showRequestWriter')->name('user.request-writer.show');
 Route::post('/users/request-writer/{user}', 'UserController@storeRequestWriter')->name('user.request-writer.store');
