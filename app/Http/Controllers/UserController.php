@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function posts()
     {
-        $posts = auth()->user()->posts->reverse();
+        $posts = auth()->user()->posts()->latest()->paginate(5);
 
         return view('user.post', compact('posts'));
     }

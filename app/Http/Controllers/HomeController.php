@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::all()->reverse();
+        $posts = Post::latest()->paginate(5);
 
         return view('home', compact('posts'));
     }
@@ -37,7 +37,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        $posts = Post::where('title','like',"%".$keyword."%")->get()->reverse();
+        $posts = Post::where('title','like',"%".$keyword."%")->latest()->paginate(5);
         
         return view('search', compact('posts', 'keyword'));
     }
