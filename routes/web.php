@@ -15,6 +15,7 @@
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/search', 'HomeController@search')->name('home.search');
 
 Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::delete('/admin/request-writer/{user}/accept', 'AdminController@acceptWriter')->name('admin.writer.accept');

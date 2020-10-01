@@ -28,4 +28,17 @@ class HomeController extends Controller
 
         return view('home', compact('posts'));
     }
+
+    public function search(Request $request)
+    {
+        $keyword=$request->keyword;
+
+        if ($keyword == null) {
+            return redirect()->back();
+        }
+
+        $posts = Post::where('title','like',"%".$keyword."%")->get()->reverse();
+        
+        return view('search', compact('posts', 'keyword'));
+    }
 }
