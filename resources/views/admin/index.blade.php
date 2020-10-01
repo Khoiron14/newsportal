@@ -28,7 +28,7 @@
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-success" type="submit">Accept</button>
                                         </form>
-                                        <form action="{{ route('admin.writer.decline', $request->user)}}" method="post">
+                                        <form action="{{ route('admin.writer.decline', $request->user)}}" method="post" onsubmit="return confirm('Are you sure?')">
                                             {{ csrf_field() }}
                                             @method('DELETE')
                                             <button class="btn btn-sm btn-danger" type="submit">Decline</button>
